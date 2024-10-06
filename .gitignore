@@ -1,0 +1,21 @@
+# Environment variables
+env/
+
+# Credentials
+credentials/
+None
+
+# Data files
+data/
+
+# Python cache and virtual envs
+__pycache__/
+venv/
+
+# Poetry
+pyproject.toml
+poetry.lock
+
+# Project related
+assets/
+dashboard/
