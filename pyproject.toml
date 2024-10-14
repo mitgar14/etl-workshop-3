@@ -1,0 +1,14 @@
+[tool.poetry]
+name = "etl-workshop-3"
+version = "0.1.0"
+description = ""
+authors = ["Martín García <martin.garcia@uao.edu.co>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
