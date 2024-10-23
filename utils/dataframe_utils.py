@@ -32,7 +32,7 @@ def dataframe_briefing(data: dict) -> pd.DataFrame:
             "Number of rows": num_rows,
             "Number of columns": num_columns,
             "Number of null values": num_nulls,
-            "Number of duplicate values": num_duplicates
+            "Number of duplicated values": num_duplicates
         })
     
     briefing = pd.DataFrame(summary_list)

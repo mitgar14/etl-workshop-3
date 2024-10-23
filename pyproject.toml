@@ -11,6 +11,7 @@ pandas = "^2.2.3"
 seaborn = "^0.13.2"
 matplotlib = "^3.9.2"
 scikit-learn = "^1.5.2"
+country-converter = "^1.2"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"
