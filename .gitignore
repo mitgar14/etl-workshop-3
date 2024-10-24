@@ -13,7 +13,6 @@ __pycache__/
 venv/
 
 # Poetry
-pyproject.toml
 poetry.lock
 
 # Project related
