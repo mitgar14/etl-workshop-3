@@ -1,7 +1,4 @@
 import pandas as pd
-import logging as log
-
-log.basicConfig(level=log.INFO, format="%(asctime)s %(message)s", datefmt="%d/%m/%Y %I:%M:%S %p")
 
 def dataframe_briefing(data: dict) -> pd.DataFrame:
     """
