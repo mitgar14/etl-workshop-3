@@ -13,11 +13,11 @@ def extracting_data() -> dict:
         dict: A dictionary with keys as strings ('2015', '2016', '2017', '2018', '2019'),
               and values as pandas DataFrames containing the happiness data for each respective year.
     """
-    df_2015 = pd.read_csv("../data/2015.csv")
-    df_2016 = pd.read_csv("../data/2016.csv")
-    df_2017 = pd.read_csv("../data/2017.csv")
-    df_2018 = pd.read_csv("../data/2018.csv")
-    df_2019 = pd.read_csv("../data/2019.csv")
+    df_2015 = pd.read_csv("./data/2015.csv")
+    df_2016 = pd.read_csv("./data/2016.csv")
+    df_2017 = pd.read_csv("./data/2017.csv")
+    df_2018 = pd.read_csv("./data/2018.csv")
+    df_2019 = pd.read_csv("./data/2019.csv")
     
     happiness_dataframes = {
         "2015": df_2015,

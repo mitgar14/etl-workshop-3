@@ -7,16 +7,18 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.10"
+python-dotenv = "^1.0.1"
 pandas = "^2.2.3"
-matplotlib = "^3.9.2"
-scikit-learn = "^1.5.2"
 country-converter = "^1.2"
-plotly = "^5.24.1"
-nbformat = ">=4.2.0"
+matplotlib = "^3.9.2"
 seaborn = "^0.13.2"
+nbformat = ">=4.2.0"
+plotly = "^5.24.1"
+scikit-learn = "^1.5.2"
 sqlalchemy = "^2.0.36"
 sqlalchemy-utils = "^0.41.2"
-python-dotenv = "^1.0.1"
+psycopg2 = "^2.9.10"
+kafka-python = "^2.0.2"
 
 [tool.poetry.group.dev.dependencies]
 ipykernel = "^6.29.5"

@@ -1,12 +1,16 @@
+# Environmental Variables
 from dotenv import load_dotenv
+import os
 
+# SQLAlchemy
 from sqlalchemy import create_engine, inspect, BigInteger, Boolean, Integer, Float, String, Text, DateTime, MetaData, Table, Column
 from sqlalchemy_utils import database_exists, create_database
 
-import os
-import logging
-
+# Data Handling and Manipulation
 import pandas as pd
+
+# Logging
+import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%d/%m/%Y %I:%M:%S %p")
 
@@ -37,7 +41,7 @@ def creating_engine():
     
     if not database_exists(url):
         create_database(url)
-        logging.info("Database created.")
+        logging.info(f'The database "{database}" was created.')
     
     logging.info("Engine created. You can now connect to the database.")
     
