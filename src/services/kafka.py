@@ -13,8 +13,13 @@ import logging
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%d/%m/%Y %I:%M:%S %p")
 
-# Kafka Consumer
 def get_kafka_consumer(topic: str) -> None:
+    """
+    Initializes a Kafka consumer to listen to a specified topic.
+    
+    Args:
+        topic (str): The name of the Kafka topic to listen to.
+    """
     
     logging.info(f'Starting to listen to topic "{topic}".')
     
@@ -40,8 +45,17 @@ def get_kafka_consumer(topic: str) -> None:
     except Exception as e:
         logging.exception(f"An error was encountered: {e}")
 
-# Kafka Producer
 def get_kafka_producer(df: pd.DataFrame, topic: str) -> None:
+    """
+    Sends messages from a DataFrame to a specified Kafka topic.
+    
+    This function initializes a Kafka producer, iterates over the rows of the provided DataFrame,
+    converts each row to JSON, and sends it to the specified Kafka topic.
+    
+    Args:
+        df (pd.DataFrame): The DataFrame containing the data to be sent.
+        topic (str): The Kafka topic to which the messages will be sent.
+    """
     
     logging.info(f'Starting to send messages to topic "{topic}".')
     

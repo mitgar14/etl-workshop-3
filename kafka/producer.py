@@ -12,8 +12,6 @@ from src.services.kafka import *
 
 # Python Libraries
 import pandas as pd
-import json
-import joblib
 
 if __name__ == "__main__":
     happiness_dataframes = extracting_data()
