@@ -1,26 +1,33 @@
 # Python Modules
-from utils.preprocessing_utils import *
+from utils.transformation_utils import *
 
 # Data Handling and Manipulation
 import pandas as pd
 
-def preprocessing_data(df: pd.DataFrame) -> pd.DataFrame:
+def transforming_data(happiness_dataframes: dict) -> pd.DataFrame:
     """
-    Preprocesses the input DataFrame by creating dummy variables and splitting the data.
+    Transforms a dictionary of happiness DataFrames by normalizing columns, adding a year column,
+    concatenating common columns, filling missing values, and adding a continent column.
     
     Args:
-        df (pd.DataFrame): The input DataFrame.
+        happiness_dataframes (dict of str: pd.DataFrame): Dictionary of DataFrames containing happiness data.
+        
     Returns:
-        pd.DataFrame: The preprocessed DataFrame.
+        pd.DataFrame: Transformed DataFrame with selected columns in a specified order.
     """
-    df = creating_dummy_variables(df)
+    happiness_dataframes = normalize_columns(happiness_dataframes)
     
-    X_train, X_test, y_train, y_test = splitting_data(df)
+    happiness_dataframes = add_year_column(happiness_dataframes)
     
-    X_test["id"] = X_test.index
+    df = concatenate_common_columns(happiness_dataframes)
+    
+    df = fill_na_with_mean(df, "corruption_perception")
+    
+    df = add_continent_column(df)
     
     new_order = [
-        'id',
+        'country',
+        'continent',
         'year',
         'economy',
         'health',
@@ -28,15 +35,9 @@ def preprocessing_data(df: pd.DataFrame) -> pd.DataFrame:
         'freedom',
         'corruption_perception',
         'generosity',
-        'continent_Africa',
-        'continent_Asia',
-        'continent_Europe',
-        'continent_North_America',
-        'continent_Central_America',
-        'continent_South_America',
-        'continent_Oceania'
+        'happiness_rank',
+        'happiness_score'
     ]
-
-    X_test = X_test[new_order]
+    df = df[new_order]
     
-    return X_test
+    return df

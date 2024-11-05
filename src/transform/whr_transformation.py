@@ -11,6 +11,7 @@ def transforming_data(happiness_dataframes: dict) -> pd.DataFrame:
     
     Args:
         happiness_dataframes (dict of str: pd.DataFrame): Dictionary of DataFrames containing happiness data.
+        
     Returns:
         pd.DataFrame: Transformed DataFrame.
     """
