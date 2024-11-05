@@ -10,9 +10,6 @@ from src.transform.whr_transformation import *
 from src.transform.whr_preprocessing import *
 from src.services.kafka import *
 
-# Python Libraries
-import pandas as pd
-
 if __name__ == "__main__":
     happiness_dataframes = extracting_data()
     

@@ -11,10 +11,14 @@ def normalize_columns(happiness_dataframes: dict) -> dict:
     It renames the columns in each DataFrame to a standard set of column names for consistency across different datasets.
     
     Args:
-        happiness_dataframes (dict): A dictionary where keys are years (int) and values are
-                                        pandas DataFrames with varying column names.
+        happiness_dataframes (dict):
+            A dictionary where keys are years (int) and values are
+            pandas DataFrames with varying column names.
+    
     Returns:
-        dict: A dictionary with the same keys (years) and DataFrames with normalized column names.
+        dict:
+            A dictionary with the same keys (years) and DataFrames
+            with normalized column names.
     """
     column_mapping = {    
         "Country": "country",
@@ -63,10 +67,14 @@ def add_year_column(happiness_dataframes: dict) -> dict:
     Adds a 'year' column to each DataFrame in the dictionary.
     
     Args:
-        happiness_dataframes (dict): A dictionary where keys are years (int) and values are
-                                        pandas DataFrames with normalized column names.
+        happiness_dataframes (dict):
+            A dictionary where keys are years (int) and values are
+            pandas DataFrames with normalized column names.
+    
     Returns:
-        dict: A dictionary with the same keys (years) and DataFrames with an additional 'year' column.
+        dict:
+            A dictionary with the same keys (years) and DataFrames
+            with an additional 'year' column.
     """
     for year, df in happiness_dataframes.items():
         df["year"] = year
@@ -82,11 +90,14 @@ def concatenate_common_columns(happiness_dataframes: dict) -> pd.DataFrame:
     among them, and concatenates these columns into a single DataFrame.
     
     Args:
-        happiness_dataframes (dict): A dictionary where the keys are identifiers
-                                     and the values are pandas DataFrames.
+        happiness_dataframes (dict):
+            A dictionary where the keys are identifiers
+            and the values are pandas DataFrames.
+    
     Returns:
-        pd.DataFrame: A DataFrame containing the concatenated common columns from
-                      the input DataFrames.
+        pd.DataFrame:
+            A DataFrame containing the concatenated common columns from
+            the input DataFrames.
     """
     common_columns = list(set.intersection(*(set(df.columns) for df in happiness_dataframes.values())))
     
@@ -101,10 +112,14 @@ def fill_na_with_mean(df: pd.DataFrame, column: str) -> pd.DataFrame:
     Fill missing values in a column with the mean of the non-missing values.
     
     Args:
-        df (pd.DataFrame): The input DataFrame.
-        column (str): The column name for which missing values are to be filled.
+        df (pd.DataFrame):
+            The input DataFrame.       
+        column (str):
+            The column name for which missing values are to be filled.
+    
     Returns:
-        pd.DataFrame: The DataFrame with missing values filled with the mean.
+        pd.DataFrame:
+            The DataFrame with missing values filled with the mean.
     """
     df[column] = df[column].fillna(df[column].mean())
     return df
@@ -114,10 +129,13 @@ def continent_conversion(country):
     Converts a given country name to its corresponding continent name.
     
     Args:
-        country (str): The name of the country to be converted.
+        country (str):
+            The name of the country to be converted.
+    
     Returns:
-        str or None: The name of the continent if conversion is successful, 
-                     otherwise None if the conversion fails.
+        str or None:
+            The name of the continent if conversion is successful, 
+            otherwise None if the conversion fails.
     """
     cc = coco.CountryConverter()
     
@@ -131,9 +149,12 @@ def add_continent_column(df: pd.DataFrame) -> pd.DataFrame:
     Adds a 'continent' column to the DataFrame by converting the 'country' column.
     
     Args:
-        df (pd.DataFrame): The input DataFrame containing a 'country' column.
+        df (pd.DataFrame):
+            The input DataFrame containing a 'country' column.
+    
     Returns:
-        pd.DataFrame: The DataFrame with an additional 'continent' column.
+        pd.DataFrame:
+            The DataFrame with an additional 'continent' column.
     """
     df["continent"] = df["country"].apply(continent_conversion)
     

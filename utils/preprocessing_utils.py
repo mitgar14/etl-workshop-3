@@ -10,9 +10,13 @@ def creating_dummy_variables(df: pd.DataFrame) -> pd.DataFrame:
     Converts the 'continent' column in the DataFrame to dummy variables and renames specific columns.
     
     Args:
-        df (pd.DataFrame): The input DataFrame containing a 'continent' column.
+        df (pd.DataFrame):
+            The input DataFrame containing a 'continent' column.
+    
     Returns:
-        pd.DataFrame: The DataFrame with dummy variables for 'continent' and renamed columns.
+        pd.DataFrame:
+            The DataFrame with dummy variables for 'continent' and
+            renamed columns.
     """
     df = pd.get_dummies(df, columns=["continent"])
     
@@ -31,9 +35,11 @@ def splitting_data(df: pd.DataFrame) -> tuple:
     Splits the input DataFrame into training and testing sets.
     
     Args:
-        df (pd.DataFrame): The input DataFrame.
+        df (pd.DataFrame):
+            The input DataFrame.
     Returns:
-        tuple: A tuple containing the training and testing DataFrames.
+        tuple:
+            A tuple containing the training and testing DataFrames.
     """
     X = df.drop(["happiness_score", "happiness_rank", "country"], axis = 1)
     y = df["happiness_score"]

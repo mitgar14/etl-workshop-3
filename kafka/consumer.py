@@ -10,13 +10,16 @@ from src.transform.whr_transformation import *
 from src.load.whr_loading import *
 from src.services.kafka import *
 
-# Python Libraries
+# Data Handling and Manipulation
 import pandas as pd
 import json
+
+# Machine Learning
 import joblib
 
 if __name__ == "__main__":
-    consumer_messages = [get_kafka_consumer("whr_kafka_topic")]
+    consumer = get_kafka_consumer("whr_kafka_topic")
+    consumer_messages = [json.loads(message.value) for message in consumer]
     
     df = pd.DataFrame(consumer_messages)
     
