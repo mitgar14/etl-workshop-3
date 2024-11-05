@@ -57,9 +57,9 @@ def comparing_names(data: dict) -> pd.DataFrame:
     for df in data.values():
         all_columns.update(df.columns)
     
-    comparison_dict = {col: {year: ('✔' if col in df.columns else '✘') for year, df in data.items()} for col in all_columns}
+    comparison_dict = {col: {year: ("✔" if col in df.columns else "✘") for year, df in data.items()} for col in all_columns}
     
     comparison_df = pd.DataFrame(comparison_dict).T
-    comparison_df.index.name = 'Column Name'
+    comparison_df.index.name = "Column Name"
     
     return comparison_df
