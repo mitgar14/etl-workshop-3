@@ -1,6 +1,11 @@
 # Data Handling and Manipulation
 import pandas as pd
 
+# Logging
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%d/%m/%Y %I:%M:%S %p")
+
 def extracting_data():
     """
     Loads World Happiness Report data from CSV files for the years 2015 to 2019.
@@ -17,6 +22,9 @@ def extracting_data():
         FileNotFoundError: 
             If any of the required CSV files are not found in the './data' directory.
     """
+    
+    logging.info("Extracting data from CSV files.")
+    
     df_2015 = pd.read_csv("./data/2015.csv")
     df_2016 = pd.read_csv("./data/2016.csv")
     df_2017 = pd.read_csv("./data/2017.csv")
@@ -30,5 +38,7 @@ def extracting_data():
         "2018": df_2018,
         "2019": df_2019
     }
+    
+    logging.info("Data extracted successfully.")
 
     return happiness_dataframes

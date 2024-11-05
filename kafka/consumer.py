@@ -17,16 +17,30 @@ import json
 # Machine Learning
 import joblib
 
+# Logging
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%d/%m/%Y %I:%M:%S %p")
+
 if __name__ == "__main__":
-    consumer = get_kafka_consumer("whr_kafka_topic")
-    consumer_messages = [json.loads(message.value) for message in consumer]
+    logging.info("Starting the Consumer script.")   
     
+    consumer = get_kafka_consumer("whr_kafka_topic")
+    
+    logging.info("Consuming messages from the Kafka topic.")
+    consumer_messages = [json.loads(message) for message in consumer]
+    
+    logging.info("Data Transformation: Converting the messages into a DataFrame.")
     df = pd.DataFrame(consumer_messages)
     
-    gb_model = joblib.load("./model/gb_model.pkl")
-    df_test = df.drop(columns=["id", "happiness_score"], axis=1)  
-    predictions = gb_model.predict(df_test)
+    logging.info("Machine Learning: Loading the Random Forest model.")
+    rf_model = joblib.load("./model/rf_model.pkl")
+    df_test = df.drop(columns=["id", "happiness_score"], axis=1)
     
+    logging.info("Machine Learning: Making predictions using the Random Forest model.")
+    predictions = rf_model.predict(df_test)
+    
+    logging.info("Data Transformation: Adding the predicted happiness score to the DataFrame.")
     df["predicted_happiness_score"] = predictions
     
     new_order = [
@@ -49,6 +63,10 @@ if __name__ == "__main__":
         'continent_Oceania'
     ]
 
+    logging.info("Data Transformation: Reordering the columns.")
     df = df[new_order]
 
+    logging.info("Data Loading: Loading the predictions into the database.")
     loading_data(df, "whr_predictions")
+    
+    logging.info("Consumer script completed.")

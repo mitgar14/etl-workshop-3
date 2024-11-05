@@ -123,26 +123,6 @@ def fill_na_with_mean(df: pd.DataFrame, column: str) -> pd.DataFrame:
     """
     df[column] = df[column].fillna(df[column].mean())
     return df
-
-def continent_conversion(country):
-    """
-    Converts a given country name to its corresponding continent name.
-    
-    Args:
-        country (str):
-            The name of the country to be converted.
-    
-    Returns:
-        str or None:
-            The name of the continent if conversion is successful, 
-            otherwise None if the conversion fails.
-    """
-    cc = coco.CountryConverter()
-    
-    try:
-        return cc.convert(names=country, to="continent")
-    except:
-        return None
     
 def add_continent_column(df: pd.DataFrame) -> pd.DataFrame:
     """
@@ -156,7 +136,9 @@ def add_continent_column(df: pd.DataFrame) -> pd.DataFrame:
         pd.DataFrame:
             The DataFrame with an additional 'continent' column.
     """
-    df["continent"] = df["country"].apply(continent_conversion)
+    cc = coco.CountryConverter()
+    
+    df["continent"] = cc.convert(names=df["country"].tolist(), to="continent")
     
     continent_mapping = {
         "Canada": "North America",

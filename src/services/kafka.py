@@ -36,21 +36,25 @@ def get_kafka_consumer(topic: str) -> list:
     
     try:
         consumer = KafkaConsumer(topic, bootstrap_servers="localhost:9092",
-                                 value_deserializer=lambda v: json.loads(v.decode('utf-8')))
+                                 value_deserializer=lambda v: json.loads(v.decode('utf-8')),
+                                 consumer_timeout_ms=1000,
+                                 auto_offset_reset='earliest',
+                                 enable_auto_commit=True)
         
         data = []
         
-        for message in consumer:
-            message = message.value
+        for kafka_message in consumer:
+            message = kafka_message.value
             
             data.append(message)
             
             timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
-            offset = message.offset
+            offset = kafka_message.offset
             logging.info(f"Message with offset {offset} received at {timestamp}: {message}")
-            
+        
+        logging.info("All messages received successfully. Closing the consumer.")
         consumer.close()
-        logging.info("All messages received successfully. Consumer closed.")
+        logging.info("Consumer closed.")
 
         return data   
     except Exception as e:
@@ -84,15 +88,15 @@ def get_kafka_producer(df: pd.DataFrame, topic: str) -> None:
                                  value_serializer=lambda v: json.dumps(v).encode('utf-8'))
         
         for index, row in df.iterrows():
-            json_row = row.to_json()
+            dict_row = dict(row)
+            json_row = json.dumps(dict_row)
             producer.send(topic, value=json_row)
-            time.sleep(1)
+            time.sleep(0.1)
             
             timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             logging.info(f"Message sent at {timestamp}")
-
+        
         producer.close()
         
-        logging.info("All messages sent successfully. Producer closed.")
     except Exception as e:
         logging.exception(f"An error was encountered: {e}")

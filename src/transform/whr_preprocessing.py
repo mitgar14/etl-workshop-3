@@ -1,33 +1,38 @@
 # Python Modules
-from utils.transformation_utils import *
+from utils.preprocessing_utils import *
 
 # Data Handling and Manipulation
 import pandas as pd
 
-def transforming_data(happiness_dataframes: dict) -> pd.DataFrame:
+# Logging
+import logging
+
+logging.basicConfig(level=logging.INFO, format="%(asctime)s %(message)s", datefmt="%d/%m/%Y %I:%M:%S %p")
+
+def preprocessing_data(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Transforms a dictionary of happiness DataFrames by normalizing columns, adding a year column,
-    concatenating common columns, filling missing values, and adding a continent column.
+    Preprocesses the input DataFrame by creating dummy variables and splitting the data.
     
     Args:
-        happiness_dataframes (dict of str: pd.DataFrame): Dictionary of DataFrames containing happiness data.
+        df (pd.DataFrame): The input DataFrame.
         
     Returns:
-        pd.DataFrame: Transformed DataFrame with selected columns in a specified order.
+        pd.DataFrame: The preprocessed DataFrame.
     """
-    happiness_dataframes = normalize_columns(happiness_dataframes)
     
-    happiness_dataframes = add_year_column(happiness_dataframes)
+    logging.info("Starting the data preprocessing process.")
     
-    df = concatenate_common_columns(happiness_dataframes)
+    logging.info("Data Preprocessing: Creating dummy variables")    
+    df = creating_dummy_variables(df)
     
-    df = fill_na_with_mean(df, "corruption_perception")
+    logging.info("Data Preprocessing: Splitting the data")
+    X_train, X_test, y_train, y_test = splitting_data(df)
     
-    df = add_continent_column(df)
+    logging.info('Data Preprocessing: Creating a column for the index named "id"')
+    X_test["id"] = X_test.index
     
     new_order = [
-        'country',
-        'continent',
+        'id',
         'year',
         'economy',
         'health',
@@ -35,9 +40,20 @@ def transforming_data(happiness_dataframes: dict) -> pd.DataFrame:
         'freedom',
         'corruption_perception',
         'generosity',
-        'happiness_rank',
-        'happiness_score'
+        'happiness_score',
+        'continent_Africa',
+        'continent_Asia',
+        'continent_Central_America',
+        'continent_Europe',
+        'continent_North_America',
+        'continent_Oceania',
+        'continent_South_America'
     ]
-    df = df[new_order]
+
+    logging.info("Data Preprocessing: Reordering columns")
+    X_test['happiness_score'] = y_test
+    X_test = X_test[new_order]
     
-    return df
+    logging.info("Data preprocessing process completed.")
+    
+    return X_test
