@@ -172,7 +172,7 @@ def load_clean_data(engine, df: pd.DataFrame, table_name: str) -> None:
             logging.info(f"Table {table_name} created successfully.")
 
             df.to_sql(table_name, con=engine, if_exists="append", index=False)
-            logging.info(f"Data loaded to table {table_name}.")
+            logging.info(f"Data loaded succesfully to table {table_name}.")
         else:
             logging.error(f"Table {table_name} already exists.")
     except Exception as e:

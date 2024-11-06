@@ -37,6 +37,6 @@ def loading_data(df: pd.DataFrame, table_name: str) -> None:
     
     load_clean_data(engine, df, table_name)
     
-    logging.info(f'Data loaded successfully into table "{table_name}". Proceeding to dispose of engine.')
+    logging.info(f"Proceeding to dispose of engine.")
     
     disposing_engine(engine)

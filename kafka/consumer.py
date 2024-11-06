@@ -52,15 +52,15 @@ if __name__ == "__main__":
         'freedom',
         'corruption_perception',
         'generosity',
-        'happiness_score',
-        'predicted_happiness_score',
         'continent_Africa',
         'continent_Asia',
         'continent_Europe',
         'continent_North_America',
         'continent_Central_America',
         'continent_South_America',
-        'continent_Oceania'
+        'continent_Oceania',
+        'happiness_score',
+        'predicted_happiness_score'
     ]
 
     logging.info("Data Transformation: Reordering the columns.")
