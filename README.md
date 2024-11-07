@@ -4,16 +4,17 @@ Realized by **Martín García** ([@mitgar14](https://github.com/mitgar14)).
 
 ## Overview ✨
 
-(add info)
+In this workshop, the [World Happiness Report dataset](https://www.kaggle.com/datasets/unsdsn/world-happiness) will be used, comprising four CSV files with data from 2015 to 2019. A streaming data pipeline will be implemented using Apache Kafka. Once processed, the data will be fed into a Random Forest regression model to estimate the Happiness Score based on other scores in the dataset. The results will then be uploaded to a database, where the information will be analyzed to assess the accuracy and insights of the predictions.
 
-The tools used are:
+**The tools used are:**
 
 * Python 3.10 ➜ [Download site](https://www.python.org/downloads/)
 * Jupyter Notebook ➜ [VS Code tool for using notebooks](https://youtu.be/ZYat1is07VI?si=BMHUgk7XrJQksTkt)
+* Docker ➜ [Download site for Docker Desktop](https://www.docker.com/products/docker-desktop/)
 * PostgreSQL ➜ [Download site](https://www.postgresql.org/download/)
 * Power BI (Desktop version) ➜ [Download site](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop)
 
-The dependencies needed for Python are
+**The dependencies needed for Python are:**
 
 * python-dotenv
 * kafka-python
@@ -23,18 +24,38 @@ The dependencies needed for Python are
 * seaborn
 * sqlalchemy
 
-These libraries are included in the Poetry project config file (`pyproject.toml`). The step-by-step installation will be described later.
+These libraries are included in the Poetry project config file ([`pyproject.toml`](https://github.com/mitgar14/etl-workshop-3/blob/main/pyproject.toml)). The step-by-step installation will be described later.
+
+**The images used in Docker are:**
+
+* confluentinc/cp-zookeeper
+* confluentinc/cp-kafka
+
+The configuration and installation of these images are facilitated by the Docker Compose config file ([`docker-compose.yml`](https://github.com/mitgar14/etl-workshop-3/blob/main/docker-compose.yml)). The explanation for using these images will be explained later.
 
 ## Dataset Information <img src="https://github.com/user-attachments/assets/5fa5298c-e359-4ef1-976d-b6132e8bda9a" alt="Dataset" width="30px"/>
 
-(add info)
+After performing several transformations on the data, the columns to be analyzed in this workshop are as follows:
+
+| Column                 | Description                                       | Data Type   |
+|------------------------|---------------------------------------------------|-------------|
+| **country**            | The country name, representing each nation        | Object      |
+| **continent**          | The continent to which each country belongs       | Object      |
+| **year**               | The year the data was recorded                    | Integer     |
+| **economy**            | A measure of each country's economic status       | Float       |
+| **health**             | Health index indicating general well-being        | Float       |
+| **social_support**     | Perceived social support within each country      | Float       |
+| **freedom**            | Citizens' perception of freedom                   | Float       |
+| **corruption_perception** | Level of corruption as perceived by citizens  | Float       |
+| **generosity**         | Level of generosity within the country            | Float       |
+| **happiness_rank**     | Global ranking based on happiness score           | Integer     |
+| **happiness_score**    | Overall happiness score for each country          | Float       |
 
 ## Data flow <img src="https://cdn-icons-png.flaticon.com/512/1953/1953319.png" alt="Data flow" width="22px"/>
 
 ![Flujo de datos](https://github.com/user-attachments/assets/6e9d34c0-8611-4f1a-b283-87029d2621da)
 
 ## Run the project <img src="https://github.com/user-attachments/assets/99bffef1-2692-4cb8-ba13-d6c8c987c6dd" alt="Running code" width="30px"/>
-
 
 ### 🛠️ Clone the repository
 
