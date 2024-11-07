@@ -5,12 +5,8 @@ env/
 credentials/
 None
 
-# Data files
-data/
-
-# Python cache and virtual envs
+# Python cache
 __pycache__/
-venv/
 
 # Poetry
 poetry.lock
