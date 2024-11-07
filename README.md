@@ -23,7 +23,7 @@ The dependencies needed for Python are
 * seaborn
 * sqlalchemy
 
-These libraries are included in the Poetry project config file (pyproject.toml). The step-by-step installation will be described later.
+These libraries are included in the Poetry project config file (`pyproject.toml`). The step-by-step installation will be described later.
 
 ## Dataset Information <img src="https://github.com/user-attachments/assets/5fa5298c-e359-4ef1-976d-b6132e8bda9a" alt="Dataset" width="30px"/>
 
