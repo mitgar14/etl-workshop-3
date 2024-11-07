@@ -189,21 +189,22 @@ To set up Kafka using Docker and run your `producer.py` and `consumer.py` script
    ```bash
    docker exec -it kafka_docker kafka-topics --list --bootstrap-server localhost:9092
    ```
-  *(gif demonstration docker 2)*
 
-3. 🏃 **Run the Producer Script**
+   *(gif demonstration docker 2)*
+
+4. 🏃 **Run the Producer Script**
 
    In Visual Studio Code, navigate to the `./kafka` directory and run the `producer.py` script **in a dedicated terminal**. The producer will start sending messages to the `happiness_topic`.
 
    *(gif demonstration docker 3)*
 
-4. 👂 **Run the Consumer Script**
+5. 👂 **Run the Consumer Script**
 
     Now navigate to the `./kafka` directory, and run the `consumer.py` script **in a dedicated terminal**. You should now see the consumer receiving it in real-time.
 
    *(gif demonstration docker 4)*
 
-5. 🛑 **Shut Down the Services**
+6. 🛑 **Shut Down the Services**
 
     When you're finished, you can stop and remove the Kafka and Zookeeper containers:
 
