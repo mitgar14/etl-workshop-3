@@ -14,6 +14,8 @@ In this workshop, the [World Happiness Report dataset](https://www.kaggle.com/da
 * PostgreSQL ➜ [Download site](https://www.postgresql.org/download/)
 * Power BI (Desktop version) ➜ [Download site](https://www.microsoft.com/es-es/power-platform/products/power-bi/desktop)
 
+---
+
 **The dependencies needed for Python are:**
 
 * python-dotenv
@@ -25,6 +27,8 @@ In this workshop, the [World Happiness Report dataset](https://www.kaggle.com/da
 * sqlalchemy
 
 These libraries are included in the Poetry project config file ([`pyproject.toml`](https://github.com/mitgar14/etl-workshop-3/blob/main/pyproject.toml)). The step-by-step installation will be described later.
+
+---
 
 **The images used in Docker are:**
 
@@ -79,7 +83,7 @@ For this project we use some environment variables that will be stored in one fi
 
 2. There we create a file called ***.env***.
 
-3. In that file we declare 6 enviromental variables. Remember that some variables in this case go without double quotes, i.e. the string notation (`"`). Only the absolute routes go with these notation:
+3. In that file we declare 5 enviromental variables. Remember that some variables in this case go without double quotes, i.e. the string notation (`"`).:
   ```python
   # PostgreSQL Variables
   
@@ -114,19 +118,17 @@ For this project we use some environment variables that will be stored in one fi
 
 ### 📔 Running the notebooks
 
-(info of the section)
-
-After you have run that notebook, then run the others in the following order. Remember that you can run all the cells in the notebook using the “Run All” button:
+We execute the 3 notebooks following the next order. You can run these by just pressing the "Execute All" button:
 
    1. *01-EDA.ipynb*
    2. *02-model_training.ipynb*
    3. *03-metrics.ipynb*
 
-(ejecutar image)
+![Running the notebooks](https://github.com/user-attachments/assets/f50a3cc2-90eb-48d3-b452-7bec0e5022c5)
   
 Remember to choose **the right Python kernel** at the time of running the notebook.
 
-(python kernel img)
+![Python kernel](https://github.com/user-attachments/assets/3b3c57ca-a07e-4a42-aa1d-4fdd9ea8187e)
 
 ---
 
@@ -139,7 +141,78 @@ To perform the Airflow tasks related to Data Extraction and Loading we recommend
 
 ---
 
+### 🐳 Run Kafka in Docker
 
+> [!IMPORTANT]
+> Make sure that Docker is installed in your system.
+
+To set up Kafka using Docker and run your `producer.py` and `consumer.py` scripts located in the `./kafka` directory, follow these steps:
+
+1. 🚀 **Start Kafka and Zookeeper Services**
+
+   Open your terminal or command prompt and navigate to the root directory of your cloned repository:
+
+   ```bash
+   cd etl-workshop-3
+   ```
+
+   Use the provided `docker-compose.yml` file to start the Kafka and Zookeeper services:
+
+   ```bash
+   docker-compose up -d
+   ```
+
+   This command will start the services in detached mode. Docker will pull the necessary images if they are not already available locally.
+
+   Check if the Kafka and Zookeeper containers are up and running:
+
+   ```bash
+   docker ps
+   ```
+
+   You should see `kafka_docker` and `zookeeper_docker` in the list of running containers.
+
+   #### Demonstration of the process
+
+   *(gif demonstration docker 1)*
+
+2. 📌 **Create a Kafka Topic**
+
+   Create a Kafka topic that your producer and consumer will use. Make sure to name it `whr_kafka_topic` to not clash with the Python scripts:
+
+   ```bash
+   docker exec -it kafka_docker kafka-topics --create --topic whr_kafka_topic --bootstrap-server localhost:9092
+   ```
+
+   List the available topics to confirm that the `whr_kafka_topic` has been created:
+
+   ```bash
+   docker exec -it kafka_docker kafka-topics --list --bootstrap-server localhost:9092
+   ```
+  *(gif demonstration docker 2)*
+
+3. 🏃 **Run the Producer Script**
+
+   In Visual Studio Code, navigate to the `./kafka` directory and run the `producer.py` script **in a dedicated terminal**. The producer will start sending messages to the `happiness_topic`.
+
+   *(gif demonstration docker 3)*
+
+4. 👂 **Run the Consumer Script**
+
+    Now navigate to the `./kafka` directory, and run the `consumer.py` script **in a dedicated terminal**. You should now see the consumer receiving it in real-time.
+
+   *(gif demonstration docker 4)*
+
+5. 🛑 **Shut Down the Services**
+
+    When you're finished, you can stop and remove the Kafka and Zookeeper containers:
+
+    ```bash
+    docker-compose down
+    ```
+    
+    *(gif demonstration docker 5)*
+    
 ## Thank you! 💕
 
 Thanks for visiting my project. Any suggestion or contribution is always welcome 🐍.
