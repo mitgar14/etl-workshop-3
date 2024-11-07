@@ -37,6 +37,7 @@ def splitting_data(df: pd.DataFrame) -> tuple:
     Args:
         df (pd.DataFrame):
             The input DataFrame.
+    
     Returns:
         tuple:
             A tuple containing the training and testing DataFrames.
