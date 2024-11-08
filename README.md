@@ -18,13 +18,17 @@ In this workshop, the [World Happiness Report dataset](https://www.kaggle.com/da
 
 **The dependencies needed for Python are:**
 
-* python-dotenv
-* kafka-python
-* pandas
-* matplotlib
-* scikit-learn
-* seaborn
-* sqlalchemy
+- python-dotenv
+- kafka-python-ng
+- country-converter
+- pandas
+- matplotlib
+- seaborn
+- plotly
+- nbformat
+- scikit-learn
+- sqlalchemy
+- psycopg2-binary
 
 These libraries are included in the Poetry project config file ([`pyproject.toml`](https://github.com/mitgar14/etl-workshop-3/blob/main/pyproject.toml)). The step-by-step installation will be described later.
 
