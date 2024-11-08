@@ -71,7 +71,7 @@ Execute the following command to clone the repository:
 
 #### Demonstration of the process
 
-(gif of the demonstration)
+![git clone](https://github.com/user-attachments/assets/0e717e57-3636-4c97-9093-d41a8e884df4)
 
 ---
 
@@ -101,18 +101,27 @@ For this project we use some environment variables that will be stored in one fi
   
   # PG_DATABASE: The name of the PostgreSQL database to connect to.
   PG_DATABASE = # your-database-name
-
   ```
 
-#### Demonstration of the process (update gif)
+#### Demonstration of the process
 
-![env variables](https://github.com/user-attachments/assets/1ace0df1-3313-4e59-b73b-8f5b280dbaed)
+![env variables](https://github.com/user-attachments/assets/06c8fd3d-2aea-45ef-8b63-34d261c9ad67)
 
 ---
 
 ### 📦 Installing the dependencies with *Poetry*
 
-(info and demonstration of poetry)
+> To install Poetry follow [this link](https://elcuaderno.notion.site/Poetry-8f7b23a0f9f340318bbba4ef36023d60?pvs=4).
+
+1. Enter the Poetry shell with `poetry shell`.
+
+2. Once the virtual environment is created, execute `poetry install` to install the dependencies. In some case of error with the *.lock* file, just execute `poetry lock` to fix it.
+
+3. Now you can execute the notebooks!
+
+#### Demonstration of the process
+
+![poetry](https://github.com/user-attachments/assets/37e64017-e874-478e-8702-b7c9dff3c661)
 
 ---
 
@@ -174,7 +183,7 @@ To set up Kafka using Docker and run your `producer.py` and `consumer.py` script
 
    #### Demonstration of the process
 
-   *(gif demonstration docker 1)*
+   ![docker_1](https://github.com/user-attachments/assets/a6fa6cfd-d880-469f-a7fe-1a5315be0513)
 
 2. 📌 **Create a Kafka Topic**
 
@@ -190,19 +199,19 @@ To set up Kafka using Docker and run your `producer.py` and `consumer.py` script
    docker exec -it kafka_docker kafka-topics --list --bootstrap-server localhost:9092
    ```
 
-   *(gif demonstration docker 2)*
+   ![docker_2](https://github.com/user-attachments/assets/7abbd046-24a2-4aeb-8007-e30a2a956c8e)
 
 4. 🏃 **Run the Producer Script**
 
    In Visual Studio Code, navigate to the `./kafka` directory and run the `producer.py` script **in a dedicated terminal**. The producer will start sending messages to the `happiness_topic`.
 
-   *(gif demonstration docker 3)*
+   ![docker_kafka_producer](https://github.com/user-attachments/assets/cb368364-f67f-47a8-91d1-ecb1ff89de77)
 
 5. 👂 **Run the Consumer Script**
 
     Now navigate to the `./kafka` directory, and run the `consumer.py` script **in a dedicated terminal**. You should now see the consumer receiving it in real-time.
 
-   *(gif demonstration docker 4)*
+   ![docker_kafka_consumer](https://github.com/user-attachments/assets/a5c264b3-dde2-46c8-a6a4-92784d5e5a89)
 
 6. 🛑 **Shut Down the Services**
 
@@ -212,7 +221,7 @@ To set up Kafka using Docker and run your `producer.py` and `consumer.py` script
     docker-compose down
     ```
     
-    *(gif demonstration docker 5)*
+![docker_compose_down](https://github.com/user-attachments/assets/7fdfd18b-a220-47f6-bb6e-0cfa0e26e95b)
     
 ## Thank you! 💕
 
