@@ -203,7 +203,7 @@ To set up Kafka using Docker and run your `producer.py` and `consumer.py` script
 
 4. 🏃 **Run the Producer Script**
 
-   In Visual Studio Code, navigate to the `./kafka` directory and run the `producer.py` script **in a dedicated terminal**. The producer will start sending messages to the `happiness_topic`.
+   In Visual Studio Code, navigate to the `./kafka` directory and run the `producer.py` script **in a dedicated terminal**. The producer will start sending messages to the `whr_kafka_topic`.
 
    ![docker_kafka_producer](https://github.com/user-attachments/assets/cb368364-f67f-47a8-91d1-ecb1ff89de77)
 
