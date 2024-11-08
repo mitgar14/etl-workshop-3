@@ -57,7 +57,7 @@ After performing several transformations on the data, the columns to be analyzed
 
 ## Data flow <img src="https://cdn-icons-png.flaticon.com/512/1953/1953319.png" alt="Data flow" width="22px"/>
 
-![Flujo de datos #3](https://github.com/user-attachments/assets/8102e07c-08d7-4893-b9f3-bfd9181efdfa)
+![Flujo de datos #3](https://github.com/user-attachments/assets/aad878b6-6955-47de-aa6e-a69a21fa1d6d)
 
 ## Run the project <img src="https://github.com/user-attachments/assets/99bffef1-2692-4cb8-ba13-d6c8c987c6dd" alt="Running code" width="30px"/>
 
