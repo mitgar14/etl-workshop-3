@@ -37,7 +37,7 @@ def get_kafka_consumer(topic: str) -> list:
     try:
         consumer = KafkaConsumer(topic, bootstrap_servers="localhost:9092",
                                  value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-                                 consumer_timeout_ms=1000,
+                                 consumer_timeout_ms=1500,
                                  auto_offset_reset='earliest',
                                  enable_auto_commit=True)
         
@@ -91,7 +91,7 @@ def get_kafka_producer(df: pd.DataFrame, topic: str) -> None:
             dict_row = dict(row)
             json_row = json.dumps(dict_row)
             producer.send(topic, value=json_row)
-            time.sleep(0.1)
+            time.sleep(1)
             
             timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
             logging.info(f"Message sent at {timestamp}")
