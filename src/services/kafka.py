@@ -37,7 +37,7 @@ def get_kafka_consumer(topic: str) -> list:
     try:
         consumer = KafkaConsumer(topic, bootstrap_servers="localhost:9092",
                                  value_deserializer=lambda v: json.loads(v.decode('utf-8')),
-                                 consumer_timeout_ms=1500,
+                                 consumer_timeout_ms=3000,
                                  auto_offset_reset='earliest',
                                  enable_auto_commit=True)
         
